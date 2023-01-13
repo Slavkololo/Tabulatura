@@ -3,9 +3,7 @@ import { Provider } from "react-redux";
 import { appStore } from "./store";
 import { App } from "./app";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(
+createRoot(document.getElementById("root")).render(
   <Provider store={appStore}>
     <App />
   </Provider>
