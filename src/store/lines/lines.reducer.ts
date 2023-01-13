@@ -5,13 +5,13 @@ import { v4 } from "uuid";
 
 const linesSlice = createSlice({
   name: "lines",
-  initialState: [],
+  initialState: [] as Line[],
   reducers: {
     addBar: (state) => {
       state.push({
         id: v4(),
         title: `Line ${state.length + 1}`,
-        lines: [],
+        bars: [],
       });
     },
 

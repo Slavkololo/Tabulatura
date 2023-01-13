@@ -6,6 +6,5 @@ import { InstrumentsList } from "./components/InstrumentsList";
 
 export const App: FC = () => {
   const instruments = useSelector((state: RootState) => state.instruments);
-  console.log(instruments);
   return <InstrumentsList instruments={instruments} />;
 };
