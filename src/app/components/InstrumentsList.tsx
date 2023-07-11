@@ -1,6 +1,10 @@
-// import React from "react";
-import { v4 } from "uuid";
+import type { FC } from "react";
+import type { Instrument } from "../../store/app.state";
 
-export const InstrumentsList = ({ titles }) => {
-  return titles.map((element: string) => <h2 key={v4()}>{element}</h2>);
+export const InstrumentsList: FC<{ instruments: Instrument[] }> = ({
+  instruments,
+}) => {
+  return instruments.map((instrument) => (
+    <h2 key={instrument.id}>{instrument.title}</h2>
+  ));
 };

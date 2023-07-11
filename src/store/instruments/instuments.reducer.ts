@@ -1,3 +1,4 @@
+import { findById } from "./../../functions/findById";
 import { Instrument } from "./../app.state.d";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
@@ -34,9 +35,7 @@ const instrumentsSlice = createSlice({
       state,
       action: PayloadAction<Pick<Instrument, "id" | "title">>
     ) => {
-      const instrument = state.find(
-        (element) => element.id === action.payload.id
-      );
+      const instrument = state.find(findById(action.payload.id));
 
       instrument.title = action.payload.title;
     },
@@ -45,18 +44,20 @@ const instrumentsSlice = createSlice({
       state,
       action: PayloadAction<Pick<Instrument, "id">>
     ) => {
-      state.filter((element) => element.id !== action.payload.id);
-    },
-
-    moveInstrument: (state, action: PayloadAction<Pick<Instrument, "id">>) => {
-      const instrument = state.find(
-        (element) => element.id === action.payload.id
+      const indexToDelete = state.indexOf(
+        state.find(findById(action.payload.id))
       );
 
-      const cutedOutInstrument = state.splice(state.indexOf(instrument), 1);
-
-      state.unshift(...cutedOutInstrument);
+      state.splice(indexToDelete, 1);
     },
+
+    // moveInstrument: (state, action: PayloadAction<Pick<Instrument, "id">>) => {
+    //   const instrument = state.find(findById(action.payload.id));
+
+    //   const cutedOutInstrument = state.splice(state.indexOf(instrument), 1);
+
+    //   state.unshift(...cutedOutInstrument);
+    // },
   },
 });
 

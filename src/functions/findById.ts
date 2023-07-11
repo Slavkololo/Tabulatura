@@ -1,3 +1,3 @@
-export const findByIt = (id) => {
-  return (element) => element === id;
+export const findById = (id) => {
+  return (element) => id === element.id;
 };
